@@ -1,0 +1,537 @@
+
+Linux Incident Analyzer Report
+Generated: Sun Jul 12 04:31:51 AM UTC 2026
+
+
+[0;34m[1m
+========================================
+Starting Linux Incident Analysis
+========================================
+[0m
+[0;36m[INFO][0m Running module: system.sh
+
+[0;34m[1m
+========================================
+SYSTEM INFORMATION
+========================================
+[0m
+Hostname:
+hardening-sec-lab
+
+Operating System:
+Ubuntu 24.04.4 LTS
+
+Kernel:
+6.8.0-134-generic
+
+Uptime:
+ 04:31:51 up 10 min,  1 user,  load average: 0.06, 0.16, 0.17
+
+Current Date:
+Sun Jul 12 04:31:51 AM UTC 2026
+[0;36m[INFO][0m Running module: cpu.sh
+
+[0;34m[1m
+========================================
+CPU ANALYSIS
+========================================
+[0m
+
+[0;36m[1mCPU Hardware Information[0m
+----------------------------------------
+Vendor               : GenuineIntel
+Model                : Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz
+CPU Sockets          : 2
+Physical Cores/socket : 1
+Logical CPUs         : 2
+
+
+[0;36m[1mCPU Load Analysis[0m
+----------------------------------------
+Load Average 1m      : 0.06
+Load Average 5m      : 0.16
+Load Average 15m     : 0.17 3/269 2579
+Available CPUs       : 2
+[0;32m[ OK ][0m [CPU] CPU load is within capacity
+
+
+[0;36m[1mCPU Utilization[0m
+----------------------------------------
+User CPU             : 0.00%
+System CPU           : 0.00%
+IO Wait              : 0.00%
+Steal Time           : 0.00%
+Idle CPU             : 100.00%
+
+
+[0;36m[1mKernel Scheduler[0m
+----------------------------------------
+Interrupts/sec       : 79
+Context Switches/sec : 108
+
+
+[0;36m[1mProcess Analysis[0m
+----------------------------------------
+Running Processes    : 1
+Blocked Processes    : 0
+Zombie Processes     : 0
+[0;32m[ OK ][0m [CPU] No blocked processes detected
+
+
+[0;36m[1mTop CPU Consumers[0m
+----------------------------------------
+PID   USER  CPU  COMMAND
+2622  root  100  ps
+1     root  1.4  systemd
+2536  root  1.3  bash
+836   root  0.5  vmtoolsd
+1110  root  0.5  containerd
+
+
+[0;36m[1mRecommendations[0m
+----------------------------------------
+[0;36m[INFO][0m Review high CPU consumers if saturation is detected
+[0;36m[INFO][0m Investigate high IO Wait with disk diagnostics
+[0;36m[INFO][0m For virtual machines review CPU steal and hypervisor contention
+[0;36m[INFO][0m Running module: memory.sh
+
+[0;34m[1m
+========================================
+MEMORY ANALYSIS
+========================================
+[0m
+Memory Summary:
+
+               total        used        free      shared  buff/cache   available
+Mem:            31Gi       778Mi        29Gi       1.5Mi       1.3Gi        30Gi
+Swap:          4.0Gi          0B       4.0Gi
+
+Memory Usage:
+
+RAM Used      : 2%
+RAM Available : 98%
+[0;32m[ OK ][0m [MEMORY] Memory utilization is normal (2%)
+
+Swap Status:
+
+NAME      TYPE SIZE USED PRIO
+/swap.img file   4G   0B   -2
+[0;32m[ OK ][0m [MEMORY] Swap is not being used
+
+Top Memory Consumers:
+
+    PID COMMAND         %MEM %CPU
+   1376 dockerd          0.2  0.2
+   1110 containerd       0.1  0.5
+   1225 ollama           0.1  0.1
+    505 multipathd       0.0  0.0
+   1013 unattended-upgr  0.0  0.0
+    469 systemd-journal  0.0  0.1
+    995 udisksd          0.0  0.0
+      1 systemd          0.0  1.4
+    680 systemd-resolve  0.0  0.0
+
+OOM Events:
+
+[0;32m[ OK ][0m [MEMORY] No Out Of Memory events detected
+[0;36m[INFO][0m Running module: disk.sh
+
+[0;34m[1m
+========================================
+DISK ANALYSIS
+========================================
+[0m
+
+[0;36m[1mFilesystem Usage[0m
+----------------------------------------
+Filesystem                         Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv  195G   37G  150G  20% /
+tmpfs                               16G     0   16G   0% /dev/shm
+/dev/sda2                          2.0G  200M  1.6G  11% /boot
+
+[0;32m[ OK ][0m [DISK] /run filesystem healthy
+[0;32m[ OK ][0m [DISK] / filesystem healthy
+[0;32m[ OK ][0m [DISK] /dev/shm filesystem healthy
+[0;32m[ OK ][0m [DISK] /run/lock filesystem healthy
+[0;32m[ OK ][0m [DISK] /boot filesystem healthy
+[0;32m[ OK ][0m [DISK] /run/user/1000 filesystem healthy
+
+
+[0;36m[1mInode Usage[0m
+----------------------------------------
+Filesystem                        Inodes IUsed IFree IUse% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv    13M  242K   13M    2% /
+[0;32m[ OK ][0m [DISK] Inode utilization normal
+
+
+[0;36m[1mDisk I/O[0m
+----------------------------------------
+Linux 6.8.0-134-generic (hardening-sec-lab) 	07/12/2026 	_x86_64_	(2 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           1.84    0.31    3.29    4.43    0.00   90.14
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+dm-0            81.72   1434.04     0.00   0.00    7.57    17.55   24.27    487.88     0.00   0.00    3.75    20.11    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.71  10.66
+loop0            0.02      0.02     0.00   0.00    0.00     1.27    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+sda             59.46   1447.06    22.82  27.74    3.89    24.34    5.09    488.11    19.52  79.32    4.47    95.93    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.25   9.77
+sr0              0.08      3.17     0.00   0.00    3.46    37.36    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.03
+
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.51    0.00    0.00    0.00    0.00   99.49
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+
+
+
+
+[0;36m[1mLargest Directories[0m
+----------------------------------------
+37G	/
+15G	/usr
+15G	/home/jmedina
+15G	/home
+9.6G	/usr/share
+4.3G	/var
+3.5G	/var/lib
+2.1G	/usr/local
+1.9G	/usr/lib
+646M	/var/log
+
+
+[0;36m[1mFilesystem Errors[0m
+----------------------------------------
+[1;33m[WARNING][0m [DISK] Filesystem related errors detected
+Jul 12 04:22:07 hardening-sec-lab kernel: EXT4-fs (dm-0): mounted filesystem 966132ca-4c6d-4497-86d6-c81f46003fb3 ro with ordered data mode. Quota mode: none.
+Jul 12 04:22:07 hardening-sec-lab kernel: EXT4-fs (dm-0): re-mounted 966132ca-4c6d-4497-86d6-c81f46003fb3 r/w.
+Jul 12 04:22:09 hardening-sec-lab kernel: EXT4-fs (sda2): mounted filesystem c29db28e-b03d-47c8-8fc9-cf021d435fe5 r/w with ordered data mode. Quota mode: none.
+
+
+[0;36m[1mRecommendations[0m
+----------------------------------------
+[0;36m[INFO][0m Investigate filesystems above 80% utilization
+[0;36m[INFO][0m Review I/O latency when applications are slow
+[0;36m[INFO][0m Check large directories before expanding storage
+[0;36m[INFO][0m Running module: network.sh
+
+[0;34m[1m
+========================================
+NETWORK ANALYSIS
+========================================
+[0m
+
+[0;36m[1mNetwork Interfaces[0m
+----------------------------------------
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+ens33            UP             192.168.111.145/24 metric 100 fe80::20c:29ff:fe06:ff6f/64 
+docker0          DOWN           172.17.0.1/16 
+br-bbcd706fe856  DOWN           172.18.0.1/16 
+
+[1;33m[WARNING][0m [NETWORK] Network interface errors detected
+
+
+[0;36m[1mRouting Table[0m
+----------------------------------------
+default via 192.168.111.2 dev ens33 proto dhcp src 192.168.111.145 metric 100 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown 
+172.18.0.0/16 dev br-bbcd706fe856 proto kernel scope link src 172.18.0.1 linkdown 
+192.168.111.0/24 dev ens33 proto kernel scope link src 192.168.111.145 metric 100 
+192.168.111.2 dev ens33 proto dhcp scope link src 192.168.111.145 metric 100 
+
+[0;32m[ OK ][0m [NETWORK] Default gateway detected: 192.168.111.2
+
+
+[0;36m[1mDNS Configuration[0m
+----------------------------------------
+
+nameserver 127.0.0.53
+options edns0 trust-ad
+search localdomain
+[0;32m[ OK ][0m [NETWORK] DNS servers configured
+
+
+[0;36m[1mConnectivity Test[0m
+----------------------------------------
+[0;32m[ OK ][0m [NETWORK] External connectivity available
+
+
+[0;36m[1mActive Connections[0m
+----------------------------------------
+Netid State  Recv-Q Send-Q         Local Address:Port   Peer Address:Port Process                                                
+udp   UNCONN 0      0                 127.0.0.54:53          0.0.0.0:*     users:(("systemd-resolve",pid=680,fd=16))             
+udp   UNCONN 0      0              127.0.0.53%lo:53          0.0.0.0:*     users:(("systemd-resolve",pid=680,fd=14))             
+udp   UNCONN 0      0      192.168.111.145%ens33:68          0.0.0.0:*     users:(("systemd-network",pid=829,fd=21))             
+tcp   LISTEN 0      4096               127.0.0.1:11434       0.0.0.0:*     users:(("ollama",pid=1225,fd=4))                      
+tcp   LISTEN 0      4096                 0.0.0.0:19808       0.0.0.0:*     users:(("sshd",pid=1258,fd=3),("systemd",pid=1,fd=99))
+tcp   LISTEN 0      4096           127.0.0.53%lo:53          0.0.0.0:*     users:(("systemd-resolve",pid=680,fd=15))             
+tcp   LISTEN 0      4096              127.0.0.54:53          0.0.0.0:*     users:(("systemd-resolve",pid=680,fd=17))             
+tcp   ESTAB  0      192          192.168.111.145:19808 192.168.111.1:50333 users:(("sshd",pid=2289,fd=4),("sshd",pid=2177,fd=4)) 
+tcp   LISTEN 0      4096                    [::]:19808          [::]:*     users:(("sshd",pid=1258,fd=4),("systemd",pid=1,fd=100))
+
+
+[0;36m[1mListening Ports[0m
+----------------------------------------
+Netid State  Recv-Q Send-Q         Local Address:Port  Peer Address:PortProcess                                                
+udp   UNCONN 0      0                 127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=680,fd=16))             
+udp   UNCONN 0      0              127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=680,fd=14))             
+udp   UNCONN 0      0      192.168.111.145%ens33:68         0.0.0.0:*    users:(("systemd-network",pid=829,fd=21))             
+tcp   LISTEN 0      4096               127.0.0.1:11434      0.0.0.0:*    users:(("ollama",pid=1225,fd=4))                      
+tcp   LISTEN 0      4096                 0.0.0.0:19808      0.0.0.0:*    users:(("sshd",pid=1258,fd=3),("systemd",pid=1,fd=99))
+tcp   LISTEN 0      4096           127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=680,fd=15))             
+tcp   LISTEN 0      4096              127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=680,fd=17))             
+tcp   LISTEN 0      4096                    [::]:19808         [::]:*    users:(("sshd",pid=1258,fd=4),("systemd",pid=1,fd=100))
+
+
+[0;36m[1mRecommendations[0m
+----------------------------------------
+[0;36m[INFO][0m Investigate interface errors when packet loss occurs
+[0;36m[INFO][0m Validate DNS resolution during application failures
+[0;36m[INFO][0m Review listening services exposed on unexpected ports
+[0;36m[INFO][0m Running module: services.sh
+
+[0;34m[1m
+========================================
+SERVICES ANALYSIS
+========================================
+[0m
+
+[0;36m[1mSystem Service Manager[0m
+----------------------------------------
+System State         : running
+[0;32m[ OK ][0m [SERVICES] Systemd reports healthy state
+
+
+[0;36m[1mFailed Services[0m
+----------------------------------------
+[0;32m[ OK ][0m [SERVICES] No failed services detected
+
+
+[0;36m[1mRunning Services[0m
+----------------------------------------
+Running Services     : 22
+  containerd.service          loaded active running containerd container runtime
+  cron.service                loaded active running Regular background program processing daemon
+  dbus.service                loaded active running D-Bus System Message Bus
+  docker.service              loaded active running Docker Application Container Engine
+  getty@tty1.service          loaded active running Getty on tty1
+  ModemManager.service        loaded active running Modem Manager
+  multipathd.service          loaded active running Device-Mapper Multipath Device Controller
+  ollama.service              loaded active running Ollama Service
+  open-vm-tools.service       loaded active running Service for virtual machines hosted on VMware
+  polkit.service              loaded active running Authorization Manager
+  rsyslog.service             loaded active running System Logging Service
+  ssh.service                 loaded active running OpenBSD Secure Shell server
+  systemd-journald.service    loaded active running Journal Service
+  systemd-logind.service      loaded active running User Login Management
+  systemd-networkd.service    loaded active running Network Configuration
+
+
+[0;36m[1mEnabled Services[0m
+----------------------------------------
+Enabled Services     : 51
+
+
+[0;36m[1mService Resource Usage[0m
+----------------------------------------
+/                                                      270      -   783.7M        -        -
+dev-hugepages.mount                                      -      -    28.0K        -        -
+dev-mqueue.mount                                         -      -    40.0K        -        -
+init.scope                                               1      -     5.2M        -        -
+proc-sys-fs-binfmt_misc.mount                            -      -     8.0K        -        -
+sys-fs-fuse-connections.mount                            -      -     4.0K        -        -
+sys-kernel-config.mount                                  -      -     4.0K        -        -
+sys-kernel-debug.mount                                   -      -     4.0K        -        -
+sys-kernel-tracing.mount                                 -      -     4.0K        -        -
+system.slice                                            70      -   833.4M        -        -
+system.slice/ModemManager.service                        4      -     8.1M        -        -
+system.slice/boot.mount                                  -      -   112.0K        -        -
+system.slice/containerd.service                          7      -    56.2M        -        -
+system.slice/cron.service                                1      -   448.0K        -        -
+system.slice/dbus.service                                1      -     2.3M        -        -
+system.slice/docker.service                             10      -   116.5M        -        -
+system.slice/multipathd.service                          7      -    22.0M        -        -
+system.slice/ollama.service                              9      -    59.5M        -        -
+system.slice/open-vm-tools.service                       4      -     6.2M        -        -
+system.slice/polkit.service                              4      -     3.0M        -        -
+system.slice/rsyslog.service                             4      -     4.2M        -        -
+system.slice/ssh.service                                 1      -     4.3M        -        -
+system.slice/ssh.socket                                  -      -     8.0K        -        -
+system.slice/swap.img.swap                               -      -   300.0K        -        -
+system.slice/system-getty.slice                          1      -     1.6M        -        -
+system.slice/system-getty.slice/getty@tty1.service       1      -   224.0K        -        -
+system.slice/system-modprobe.slice                       -      -   116.0K        -        -
+system.slice/system-systemd\x2dfsck.slice                -      -   936.0K        -        -
+system.slice/systemd-journald.service                    1      -    25.4M        -        -
+system.slice/systemd-logind.service                      1      -     1.9M        -        -
+system.slice/systemd-networkd.service                    1      -     3.3M        -        -
+system.slice/systemd-resolved.service                    1      -     7.6M        -        -
+system.slice/systemd-timesyncd.service                   2      -     1.6M        -        -
+system.slice/systemd-udevd.service                       1      -    22.8M        -        -
+system.slice/udisks2.service                             7      -     7.8M        -        -
+system.slice/unattended-upgrades.service                 2      -    18.2M        -        -
+system.slice/vgauth.service                              1      -     7.4M        -        -
+user.slice                                              11      -   570.1M        -        -
+user.slice/user-1000.slice                              11      -   569.9M        -        -
+user.slice/user-1000.slice/session-1.scope               9      -   564.4M        -        -
+user.slice/user-1000.slice/user@1000.service             2      -     4.7M        -        -
+
+
+[0;36m[1mRecommendations[0m
+----------------------------------------
+[0;36m[INFO][0m Investigate failed services before restarting production workloads
+[0;36m[INFO][0m Review service dependencies during startup failures
+[0;36m[INFO][0m Validate enabled services follow operational requirements
+[0;36m[INFO][0m Running module: logs.sh
+
+[0;34m[1m
+========================================
+LOG ANALYSIS
+========================================
+[0m
+
+[0;36m[1mSystem Critical Errors[0m
+----------------------------------------
+
+Recent Events
+-------------
+Jul 12 04:22:18 hardening-sec-lab multipath[1308]: sda: failed to get sgio uid: No such file or directory
+Jul 12 04:22:19 hardening-sec-lab kernel: kauditd_printk_skb: 108 callbacks suppressed
+Jul 12 04:22:28 hardening-sec-lab multipath[1494]: sda: failed to get sysfs uid: No such file or directory
+Jul 12 04:22:28 hardening-sec-lab multipath[1494]: sda: failed to get sgio uid: No such file or directory
+Jul 12 04:22:04 hardening-sec-lab kernel: workqueue: blk_mq_run_work_fn hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
+Jul 12 04:22:12 hardening-sec-lab multipath[1659]: sda: failed to get sysfs uid: No such file or directory
+Jul 12 04:22:12 hardening-sec-lab multipath[1659]: sda: failed to get sgio uid: No such file or directory
+Jul 12 04:24:18 hardening-sec-lab login[1257]: PAM unable to dlopen(pam_lastlog.so): /usr/lib/security/pam_lastlog.so: cannot open shared object file: No such file or directory
+Jul 12 04:24:18 hardening-sec-lab login[1257]: PAM adding faulty module: pam_lastlog.so
+Jul 12 04:25:14 hardening-sec-lab kernel: workqueue: blk_mq_run_work_fn hogged CPU for >10000us 8 times, consider switching to WQ_UNBOUND
+
+
+[0;36m[1mKernel Messages[0m
+----------------------------------------
+
+Recent Kernel Events
+--------------------
+[    1.236322] core: CPUID marked event: 'cache references' unavailable
+[    1.237261] core: CPUID marked event: 'cache misses' unavailable
+[    1.237328] core: CPUID marked event: 'branch instructions' unavailable
+[    1.238261] core: CPUID marked event: 'branch misses' unavailable
+[    6.898872] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[   27.699861] sd 26:0:0:0: [sda] Assuming drive cache: write through
+[   50.529578] piix4_smbus 0000:00:07.3: SMBus Host Controller not enabled!
+[   59.882028] kauditd_printk_skb: 108 callbacks suppressed
+[   70.034042] workqueue: blk_mq_run_work_fn hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
+[  260.851062] workqueue: blk_mq_run_work_fn hogged CPU for >10000us 8 times, consider switching to WQ_UNBOUND
+
+
+[0;36m[1mOut Of Memory Events[0m
+----------------------------------------
+
+
+[0;36m[1mAuthentication Failures[0m
+----------------------------------------
+
+
+DEBUG: logs_authentication terminó
+
+
+[0;36m[1mOperational Guidance[0m
+----------------------------------------
+
+
+[0;34m[1m
+========================================
+EXECUTIVE SUMMARY
+========================================
+[0m
+
+System Health
+----------------------------------------
+Status               : WARNING
+Risk Score           : 20/100
+Assessment           : Investigation recommended
+
+Findings Summary
+----------------------------------------
+Critical             : 0
+Warnings             : 4
+Healthy Checks       : 19
+Information          : 5
+
+Priority Findings
+-----------------
+ [WARNING] [DISK] Filesystem related errors detected
+ [WARNING] [NETWORK] Network interface errors detected
+ [WARNING] [LOGS] 27 critical journal events detected
+ [WARNING] [LOGS] 13 kernel warning/error events detected
+
+Recommended Actions
+-------------------
+
+Finding:
+[DISK] Filesystem related errors detected
+
+Recommended Actions:
+--------------------
+1. Validate filesystem usage:
+   df -h
+
+2. Review inode consumption:
+   df -i
+
+3. Identify large directories:
+   du -xh / | sort -h
+
+Finding:
+[NETWORK] Network interface errors detected
+
+Recommended Actions:
+--------------------
+1. Validate interface state:
+   ip link
+
+2. Review IP configuration:
+   ip addr
+
+Finding:
+[LOGS] 27 critical journal events detected
+
+Finding:
+[LOGS] 13 kernel warning/error events detected
+
+Successful Checks
+-----------------
+ [ OK ] [CPU] CPU load is within capacity
+ [ OK ] [CPU] No blocked processes detected
+ [ OK ] [MEMORY] Memory utilization is normal (2%)
+ [ OK ] [MEMORY] Swap is not being used
+ [ OK ] [MEMORY] No Out Of Memory events detected
+ [ OK ] [DISK] /run filesystem healthy
+ [ OK ] [DISK] / filesystem healthy
+ [ OK ] [DISK] /dev/shm filesystem healthy
+ [ OK ] [DISK] /run/lock filesystem healthy
+ [ OK ] [DISK] /boot filesystem healthy
+ [ OK ] [DISK] /run/user/1000 filesystem healthy
+ [ OK ] [DISK] Inode utilization normal
+ [ OK ] [NETWORK] Default gateway detected: 192.168.111.2
+ [ OK ] [NETWORK] DNS servers configured
+ [ OK ] [NETWORK] External connectivity available
+ [ OK ] [SERVICES] Systemd reports healthy state
+ [ OK ] [SERVICES] No failed services detected
+ [ OK ] [LOGS] No Out Of Memory events detected
+ [ OK ] [LOGS] No authentication failures detected
+
+Information
+-----------
+ [INFO] [LOGS] Correlate journal events with the incident timeline
+ [INFO] [LOGS] Investigate repeated kernel warnings before rebooting
+ [INFO] [LOGS] Review authentication failures for possible brute-force activity
+ [INFO] [LOGS] Correlate OOM events with CPU, Memory and Disk utilization
+ [INFO] [LOGS] Escalate immediately if production services were terminated by OOM Killer
+
+=================================
+Report completed
+Location:
+/home/jmedina/projects/incident-analyzer/reports/incident-20260712-043151.txt
+=================================
+[0;32m[COMPLETED][0m Incident analysis completed
